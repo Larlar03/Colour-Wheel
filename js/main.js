@@ -1,31 +1,28 @@
-const myQuestion = 'What should I watch on Netflix?';
+//Stores the "Pick a Colour" button
+const pickButton = document.getElementById("pick");
 
-console.log(myQuestion);
+//Stores the "Mystery Colour" button
+const mysteryButton = document.getElementById("mystery");
 
-const randomNum = Math.floor(Math.random( ) * 7); // random number betqeen 0-7
-
-let netflix = ' ' // value is undefined
-
-switch (randomNum) { // if random number is...
-  case 0:
-        netflix = ('Layer Cake');
-        break;
-    case 1:
-        netflix = ('Seven Psychopaths');
-        break;
-    case 2:
-        netflix = ('The Grand Budapest Hotel');
-        break;
-    case 3:
-        netflix = ('Flaked');
-        break;
-    case 4:
-        netflix = ('Rake');
-        break;
-    case 5:
-        netflix = ('Hannibal');
-        break;
-    case 6:
-        netflix = ('Rick and Morty');
-        break;
+//Random number function to create a rgb number
+function randomNum(num) {
+  return Math.floor(Math.random() * num);
 }
+
+
+
+// Function to change the colour
+function colourChange(event) {
+  const randomColour = 'rgb(' + randomNum(255) + ',' + randomNum(255) + ',' + randomNum(255) + ')';
+
+/*When an event (scroll, click etc) takes place on the target(button) change the style(backgroundcolour) by using the randomColour function*/
+  event.target.style.backgroundColor = randomColour;
+}
+
+
+
+/*When clicking on the pick button, the colour change function will run*/
+pickButton.onclick = colourChange;
+
+/*When scrolling over the mystery button, the colour change function will run*/
+mysteryButton.onwheel = colourChange;
